@@ -6,5 +6,5 @@ module.exports = {
   preset: 'react-native',
   setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
   coverageProvider: 'babel',
-  testEnvironment: 'jsdom',
+  testEnvironment: 'jsdom'
 }
