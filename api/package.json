@@ -1,0 +1,28 @@
+{
+  "name": "minisigaa-api",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint '{src,tests}/**' --fix",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --verbose",
+    "test:verbose": "jest --passWithNoTests --runInBand",
+    "test:unit": "npm run test -- --watch -c jest-unit-config.js",
+    "test:integration": "npm run test -- --watch -c jest-integration-config.js",
+    "test:staged": "npm run test -- --findRelatedTests",
+    "test:ci": "npm run test -- --coverage"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^26.0.21",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "eslint": "^7.22.0",
+    "eslint-config-standard-with-typescript": "^20.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.4",
+    "typescript": "^4.2.3"
+  }
+}
