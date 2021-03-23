@@ -1,0 +1,9 @@
+node_modules
+.next
+.vercel
+.vscode
+coverage
+dist
+*.json
+*.scss
+next-env.d.ts
