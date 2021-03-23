@@ -1,8 +1,0 @@
-node_modules
-coverage
-.vscode
-android
-ios
-*.json
-*.png
-*.lock
