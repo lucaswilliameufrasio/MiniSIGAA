@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
 
   headerLeading: {
     fontFamily: 'RedHatDisplay_900Black',
+    fontSize: 16,
     marginLeft: 10
   }
 })
