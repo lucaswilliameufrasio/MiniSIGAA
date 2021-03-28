@@ -1,11 +1,11 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import GuestHome from '@/presentation/screens/GuestHome'
+import GuestHome from '@/presentation/screens/guest-home/guest-home'
 
 const Stack = createStackNavigator()
 
-const Routes: React.FC = () => {
+const Router: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -20,4 +20,4 @@ const Routes: React.FC = () => {
   )
 }
 
-export default Routes
+export default Router
