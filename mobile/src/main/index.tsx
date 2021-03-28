@@ -6,7 +6,11 @@ const Main: React.FC = () => {
   return (
     <>
       <Router />
-      <StatusBar barStyle="light-content"/>
+      <StatusBar
+        backgroundColor='transparent'
+        translucent
+        barStyle='dark-content'
+      />
     </>
   )
 }
