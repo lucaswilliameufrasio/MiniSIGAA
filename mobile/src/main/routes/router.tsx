@@ -8,7 +8,8 @@ import {
   AdvisorDisciplineManagement,
   GuestHome,
   Login,
-  TeacherHome
+  TeacherHome,
+  StudentHome
 } from '@/presentation/screens'
 
 const Stack = createStackNavigator()
@@ -17,7 +18,7 @@ const Router: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='TeacherHome'
+        initialRouteName='StudentHome'
         screenOptions={{
           headerShown: false
         }}
@@ -40,6 +41,10 @@ const Router: React.FC = () => {
         <Stack.Screen
           name='TeacherHome'
           component={TeacherHome}
+        />
+        <Stack.Screen
+          name='StudentHome'
+          component={StudentHome}
         />
       </Stack.Navigator>
     </NavigationContainer>

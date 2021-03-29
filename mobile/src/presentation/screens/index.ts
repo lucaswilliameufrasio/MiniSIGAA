@@ -5,3 +5,4 @@ export { default as AdvisorTeacherManagement } from './advisor-teacher-managemen
 export { default as AdvisorStudentManagement } from './advisor-student-management/advisor-student-management'
 export { default as AdvisorDisciplineManagement } from './advisor-discipline-management/advisor-discipline-management'
 export { default as TeacherHome } from './teacher-home/teacher-home'
+export { default as StudentHome } from './student-home/student-home'
