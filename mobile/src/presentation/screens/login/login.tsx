@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { TextInput } from 'react-native-gesture-handler'
-import CheckBox from '@react-native-community/checkbox'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-import { Header, ScreenWrapper } from '@/presentation/components'
+import { Header, ScreenWrapper, CheckBox } from '@/presentation/components'
 
 const Login = (): JSX.Element => {
   const [toggleCheckBoxStudent, setToggleCheckBoxStudent] = useState(false)
@@ -39,56 +38,23 @@ const Login = (): JSX.Element => {
             justifyContent: 'center'
           }}
         >
-          <View
-            style={{
-              justifyContent: 'center',
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginHorizontal: 8
-            }}
-          >
-            <CheckBox
-              disabled={false}
-              value={toggleCheckBoxStudent}
-              onValueChange={(value) => handleStudentCheckBox(value)}
-              hitSlop={{ top: 120, left: 120, bottom: 120, right: 120 }}
-            />
-            <Text>Aluno</Text>
-          </View>
+          <CheckBox
+            label='Aluno'
+            value={toggleCheckBoxStudent}
+            onValueChange={(value) => handleStudentCheckBox(value)}
+          />
 
-          <View
-            style={{
-              justifyContent: 'center',
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginHorizontal: 8
-            }}
-          >
-            <CheckBox
-              disabled={false}
-              value={toggleCheckBoxTeacher}
-              onValueChange={(value) => handleTeacherCheckBox(value)}
-              hitSlop={{ top: 120, left: 120, bottom: 120, right: 120 }}
-            />
-            <Text>Professor</Text>
-          </View>
+          <CheckBox
+            label='Professor'
+            value={toggleCheckBoxTeacher}
+            onValueChange={(value) => handleTeacherCheckBox(value)}
+          />
 
-          <View
-            style={{
-              justifyContent: 'center',
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginHorizontal: 8
-            }}
-          >
-            <CheckBox
-              disabled={false}
-              value={toggleCheckBoxAdvisor}
-              onValueChange={(newValue) => handleAdvisorCheckBox(newValue)}
-              hitSlop={{ top: 120, left: 120, bottom: 120, right: 120 }}
-            />
-            <Text>Técnico</Text>
-          </View>
+          <CheckBox
+            label='Técnico'
+            value={toggleCheckBoxAdvisor}
+            onValueChange={(value) => handleAdvisorCheckBox(value)}
+          />
         </View>
 
         <Text style={styles.label}>Email</Text>
