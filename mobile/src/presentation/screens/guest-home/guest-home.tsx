@@ -1,7 +1,11 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/core'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { StyleSheet, Text, View } from 'react-native'
 
+import { Header, ScreenWrapper } from '@/presentation/components'
+
+const GuestHome = (): JSX.Element => {
   const navigator = useNavigation()
 
   const handleNavigateToLogin = (): void => {
@@ -9,24 +13,24 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
   }
 
   return (
+    <ScreenWrapper>
       <Header />
       <View style={styles.content}>
         <Text style={styles.contentTitle}>Bem vindo!</Text>
-        <TouchableOpacity style={styles.contentButton} onPress={handleNavigateToLogin}>
+        <TouchableOpacity
+          style={styles.contentButton}
+          onPress={handleNavigateToLogin}
+        >
           <Text style={styles.contentButtonText}>Acessar o sistema</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </ScreenWrapper>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    flex: 1,
-    paddingTop: StatusBar.currentHeight
-  },
+export default GuestHome
 
+const styles = StyleSheet.create({
   content: {
     alignItems: 'center',
     flex: 1,
@@ -53,17 +57,5 @@ const styles = StyleSheet.create({
     color: '#000',
     fontFamily: 'RedHatDisplay_900Black',
     fontSize: 24
-  },
-
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%'
-  },
-
-  headerLeading: {
-    fontFamily: 'RedHatDisplay_900Black',
-    fontSize: 16,
-    marginLeft: 10
   }
 })
