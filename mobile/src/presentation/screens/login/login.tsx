@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { TextInput } from 'react-native-gesture-handler'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-import { Header, ScreenWrapper, CheckBox } from '@/presentation/components'
+import { GuestHeader, ScreenWrapper, CheckBox } from '@/presentation/components'
 
 const Login = (): JSX.Element => {
   const [toggleCheckBoxStudent, setToggleCheckBoxStudent] = useState(false)
@@ -29,7 +29,7 @@ const Login = (): JSX.Element => {
 
   return (
     <ScreenWrapper>
-      <Header />
+      <GuestHeader />
       <View style={styles.loginContainer}>
         <View
           style={{
