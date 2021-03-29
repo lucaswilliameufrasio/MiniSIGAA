@@ -4,7 +4,10 @@ module.exports = {
   coverageDirectory: 'coverage',
   testPathIgnorePatterns: ['<rootDir>/node_modules/'],
   preset: 'react-native',
-  setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
+  setupFilesAfterEnv: [
+    '@testing-library/jest-native/extend-expect',
+    './node_modules/react-native-gesture-handler/jestSetup.js'
+  ],
   coverageProvider: 'babel',
   testEnvironment: 'jsdom'
 }
