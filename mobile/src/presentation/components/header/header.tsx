@@ -1,7 +1,13 @@
-import { StackActions, useNavigation } from '@react-navigation/core'
 import React, { useState } from 'react'
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { StackActions, useNavigation } from '@react-navigation/core'
+import {
+  Modal,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity
+} from 'react-native'
 
 const Header: React.FC = () => {
   const navigation = useNavigation()

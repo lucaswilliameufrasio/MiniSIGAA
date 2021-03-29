@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/core'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
 import { GuestHeader, ScreenWrapper } from '@/presentation/components'
 
