@@ -5,6 +5,7 @@ import {
   AdvisorHome,
   AdvisorStudentManagement,
   AdvisorTeacherManagement,
+  AdvisorDisciplineManagement,
   GuestHome,
   Login
 } from '@/presentation/screens'
@@ -15,7 +16,7 @@ const Router: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='AdvisorStudentManagement'
+        initialRouteName='AdvisorDisciplineManagement'
         screenOptions={{
           headerShown: false
         }}
@@ -30,6 +31,10 @@ const Router: React.FC = () => {
         <Stack.Screen
           name='AdvisorStudentManagement'
           component={AdvisorStudentManagement}
+        />
+        <Stack.Screen
+          name='AdvisorDisciplineManagement'
+          component={AdvisorDisciplineManagement}
         />
       </Stack.Navigator>
     </NavigationContainer>
