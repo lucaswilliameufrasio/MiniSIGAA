@@ -9,10 +9,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerLeading}>MiniSIGAA</Text>
-      </View>
+      <Header />
       <View style={styles.content}>
         <Text style={styles.contentTitle}>Bem vindo!</Text>
         <TouchableOpacity style={styles.contentButton} onPress={handleNavigateToLogin}>
