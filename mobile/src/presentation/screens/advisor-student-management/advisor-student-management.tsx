@@ -26,9 +26,9 @@ const AdvisorStudentManagement = (): JSX.Element => {
     <View key={index.toString()} style={styles.listItemContainer}>
       {index === 0
         ? (
-        <View style={styles.addTeacherButtonContainer}>
-          <TouchableOpacity style={styles.addTeacherButton} onPress={() => {}}>
-            <Text style={styles.addTeacherButtonText}>Adicionar Aluno</Text>
+        <View style={styles.addStudentButtonContainer}>
+          <TouchableOpacity style={styles.addStudentButton} onPress={() => {}}>
+            <Text style={styles.addStudentButtonText}>Adicionar Aluno</Text>
           </TouchableOpacity>
         </View>
           )
@@ -61,7 +61,7 @@ const AdvisorStudentManagement = (): JSX.Element => {
 export default AdvisorStudentManagement
 
 const styles = StyleSheet.create({
-  addTeacherButton: {
+  addStudentButton: {
     alignItems: 'center',
     backgroundColor: '#000',
     borderColor: 'rgba(0, 0, 0, .26)',
@@ -73,12 +73,12 @@ const styles = StyleSheet.create({
     width: 180
   },
 
-  addTeacherButtonContainer: {
+  addStudentButtonContainer: {
     marginBottom: 16,
     paddingTop: 40
   },
 
-  addTeacherButtonText: {
+  addStudentButtonText: {
     color: '#FFF',
     fontFamily: 'Roboto_700Bold',
     fontSize: 14
