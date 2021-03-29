@@ -15,13 +15,13 @@ const GuestHome = (): JSX.Element => {
   return (
     <ScreenWrapper>
       <Header />
-      <View style={styles.content}>
-        <Text style={styles.contentTitle}>Bem vindo!</Text>
+      <View style={styles.guestContainer}>
+        <Text style={styles.guestTitle}>Bem vindo!</Text>
         <TouchableOpacity
-          style={styles.contentButton}
+          style={styles.guestButton}
           onPress={handleNavigateToLogin}
         >
-          <Text style={styles.contentButtonText}>Acessar o sistema</Text>
+          <Text style={styles.guestButtonText}>Acessar o sistema</Text>
         </TouchableOpacity>
       </View>
     </ScreenWrapper>
@@ -31,13 +31,7 @@ const GuestHome = (): JSX.Element => {
 export default GuestHome
 
 const styles = StyleSheet.create({
-  content: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center'
-  },
-
-  contentButton: {
+  guestButton: {
     alignItems: 'center',
     borderColor: '#000',
     borderRadius: 8,
@@ -48,12 +42,18 @@ const styles = StyleSheet.create({
     width: 260
   },
 
-  contentButtonText: {
+  guestButtonText: {
     fontFamily: 'Roboto_700Bold',
     fontSize: 16
   },
 
-  contentTitle: {
+  guestContainer: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center'
+  },
+
+  guestTitle: {
     color: '#000',
     fontFamily: 'RedHatDisplay_900Black',
     fontSize: 24
