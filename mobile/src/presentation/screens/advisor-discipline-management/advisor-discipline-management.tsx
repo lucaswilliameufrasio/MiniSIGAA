@@ -25,9 +25,9 @@ const AdvisorDisciplineManagement = (): JSX.Element => {
     <View key={index.toString()} style={styles.listItemContainer}>
       {index === 0
         ? (
-        <View style={styles.addTeacherButtonContainer}>
-          <TouchableOpacity style={styles.addTeacherButton} onPress={() => {}}>
-            <Text style={styles.addTeacherButtonText}>Adicionar Disciplina</Text>
+        <View style={styles.addDisciplineButtonContainer}>
+          <TouchableOpacity style={styles.addDisciplineButton} onPress={() => {}}>
+            <Text style={styles.addDisciplineButtonText}>Adicionar Disciplina</Text>
           </TouchableOpacity>
         </View>
           )
@@ -59,7 +59,7 @@ const AdvisorDisciplineManagement = (): JSX.Element => {
 export default AdvisorDisciplineManagement
 
 const styles = StyleSheet.create({
-  addTeacherButton: {
+  addDisciplineButton: {
     alignItems: 'center',
     backgroundColor: '#000',
     borderColor: 'rgba(0, 0, 0, .26)',
@@ -71,12 +71,12 @@ const styles = StyleSheet.create({
     width: 180
   },
 
-  addTeacherButtonContainer: {
+  addDisciplineButtonContainer: {
     marginBottom: 16,
     paddingTop: 40
   },
 
-  addTeacherButtonText: {
+  addDisciplineButtonText: {
     color: '#FFF',
     fontFamily: 'Roboto_700Bold',
     fontSize: 14
