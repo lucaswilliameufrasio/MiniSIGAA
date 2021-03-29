@@ -13,15 +13,15 @@ const AdvisorHome = (): JSX.Element => {
   }
 
   const handleNavigateToStudentManagement = (): void => {
-    console.log('Navigating to AdvisorStudentManagement')
+    navigator.navigate('AdvisorStudentManagement')
   }
 
   const handleNavigateToDisciplineManagement = (): void => {
-    console.log('Navigating to AdvisorDisciplineManagement')
+    navigator.navigate('AdvisorDisciplineManagement')
   }
 
   const handleNavigateToOfferManagement = (): void => {
-    console.log('Navigating to AdvisorOfferManagement')
+    navigator.navigate('AdvisorOfferManagement')
   }
 
   return (

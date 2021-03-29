@@ -19,7 +19,7 @@ const Router: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='AdvisorOfferManagement'
+        initialRouteName='AdvisorHome'
         screenOptions={{
           headerShown: false
         }}
