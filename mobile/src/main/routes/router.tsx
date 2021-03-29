@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import {
   AdvisorHome,
+  AdvisorStudentManagement,
   AdvisorTeacherManagement,
   GuestHome,
   Login
@@ -14,7 +15,7 @@ const Router: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='AdvisorHome'
+        initialRouteName='AdvisorStudentManagement'
         screenOptions={{
           headerShown: false
         }}
@@ -25,6 +26,10 @@ const Router: React.FC = () => {
         <Stack.Screen
           name='AdvisorTeacherManagement'
           component={AdvisorTeacherManagement}
+        />
+        <Stack.Screen
+          name='AdvisorStudentManagement'
+          component={AdvisorStudentManagement}
         />
       </Stack.Navigator>
     </NavigationContainer>
