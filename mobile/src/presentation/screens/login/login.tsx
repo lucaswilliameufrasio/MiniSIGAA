@@ -3,11 +3,13 @@ import { TextInput } from 'react-native-gesture-handler'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { GuestHeader, ScreenWrapper, CheckBox } from '@/presentation/components'
+import { StackActions, useNavigation } from '@react-navigation/core'
 
 const Login = (): JSX.Element => {
-  const [toggleCheckBoxStudent, setToggleCheckBoxStudent] = useState(false)
-  const [toggleCheckBoxTeacher, setToggleCheckBoxTeacher] = useState(false)
+  const navigation = useNavigation()
   const [toggleCheckBoxAdvisor, setToggleCheckBoxAdvisor] = useState(false)
+  const [toggleCheckBoxTeacher, setToggleCheckBoxTeacher] = useState(false)
+  const [toggleCheckBoxStudent, setToggleCheckBoxStudent] = useState(false)
 
   const handleStudentCheckBox = (value: boolean): void => {
     setToggleCheckBoxStudent(value)
@@ -25,6 +27,22 @@ const Login = (): JSX.Element => {
     setToggleCheckBoxAdvisor(value)
     setToggleCheckBoxStudent(false)
     setToggleCheckBoxTeacher(false)
+  }
+
+  const handleSignIn = (): void => {
+    if (toggleCheckBoxAdvisor) {
+      navigation.dispatch({
+        ...StackActions.replace('AdvisorHome')
+      })
+    } else if (toggleCheckBoxTeacher) {
+      navigation.dispatch({
+        ...StackActions.replace('TeacherHome')
+      })
+    } else if (toggleCheckBoxStudent) {
+      navigation.dispatch({
+        ...StackActions.replace('StudentHome')
+      })
+    }
   }
 
   return (
@@ -72,7 +90,7 @@ const Login = (): JSX.Element => {
         />
 
         <View style={styles.loginButtonContainer}>
-          <TouchableOpacity style={styles.loginButton} onPress={() => {}}>
+          <TouchableOpacity style={styles.loginButton} onPress={handleSignIn}>
             <Text style={styles.loginButtonText}>Acessar o sistema</Text>
           </TouchableOpacity>
         </View>
