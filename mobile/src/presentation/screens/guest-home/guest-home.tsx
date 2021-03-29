@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/core'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { StyleSheet, Text, View } from 'react-native'
 
-import { Header, ScreenWrapper } from '@/presentation/components'
+import { GuestHeader, ScreenWrapper } from '@/presentation/components'
 
 const GuestHome = (): JSX.Element => {
   const navigator = useNavigation()
@@ -14,7 +14,7 @@ const GuestHome = (): JSX.Element => {
 
   return (
     <ScreenWrapper>
-      <Header />
+      <GuestHeader />
       <View style={styles.guestContainer}>
         <Text style={styles.guestTitle}>Bem vindo!</Text>
         <TouchableOpacity
