@@ -24,7 +24,7 @@ export class DbAdvisorAuthentication implements Authentication {
       return left(new UserNotFoundError())
     }
 
-    const isPasswordValid = await this.hashComparer.compare(
+    const isPasswordValid = this.hashComparer.compare(
       params.password,
       userFound.password,
     )
