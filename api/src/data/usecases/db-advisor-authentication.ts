@@ -1,5 +1,5 @@
 import {
-  LoadUserByEmailRepository,
+  LoadPersonByEmailRepository,
   HashComparer,
   Encrypter,
   LoadAdvisorByPersonIdRepository
@@ -12,7 +12,7 @@ import { left, right } from '@/shared/either'
 export class DbAdvisorAuthentication implements Authentication {
   constructor (
     private readonly loadAdvisorByUserId: LoadAdvisorByPersonIdRepository,
-    private readonly loadUserByEmail: LoadUserByEmailRepository,
+    private readonly loadUserByEmail: LoadPersonByEmailRepository,
     private readonly hashComparer: HashComparer,
     private readonly encrypter: Encrypter
   ) {}
