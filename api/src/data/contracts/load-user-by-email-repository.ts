@@ -1,12 +1,12 @@
 export interface LoadUserByEmailRepository {
-    call (email: string): Promise<LoadUserByEmailRepository.Result>
+  call: (email: string) => Promise<LoadUserByEmailRepository.Result>
 }
 
 export namespace LoadUserByEmailRepository {
-    export type Result = {
-        id: number
-        name: string
-        email: string
-        password: string
-    }
+  export type Result = {
+    id: number
+    name: string
+    email: string
+    password: string
+  }
 }

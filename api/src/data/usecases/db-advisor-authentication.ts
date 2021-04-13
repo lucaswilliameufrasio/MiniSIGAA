@@ -2,7 +2,7 @@ import {
   LoadUserByEmailRepository,
   HashComparer,
   Encrypter,
-  LoadAdvisorByUserIdRepository,
+  LoadAdvisorByUserIdRepository
 } from '@/data/contracts'
 import { UserNotFoundError } from '@/data/usecases/errors'
 import { AccessPermissionError, InvalidPasswordError } from '@/domain/errors'
@@ -10,14 +10,14 @@ import { Authentication } from '@/domain/usecases'
 import { left, right } from '@/shared/either'
 
 export class DbAdvisorAuthentication implements Authentication {
-  constructor(
-    private readonly loadAdvisorByUserId:LoadAdvisorByUserIdRepository,
+  constructor (
+    private readonly loadAdvisorByUserId: LoadAdvisorByUserIdRepository,
     private readonly loadUserByEmail: LoadUserByEmailRepository,
     private readonly hashComparer: HashComparer,
-    private readonly encrypter: Encrypter,
+    private readonly encrypter: Encrypter
   ) {}
 
-  async execute(params: Authentication.Params): Promise<Authentication.Result> {
+  async execute (params: Authentication.Params): Promise<Authentication.Result> {
     const userFound = await this.loadUserByEmail.call(params.email)
 
     if (!userFound) {
@@ -26,7 +26,7 @@ export class DbAdvisorAuthentication implements Authentication {
 
     const isPasswordValid = this.hashComparer.compare(
       params.password,
-      userFound.password,
+      userFound.password
     )
 
     if (!isPasswordValid) {
@@ -44,7 +44,7 @@ export class DbAdvisorAuthentication implements Authentication {
     return right({
       name: userFound.name,
       role: 'advisor',
-      token,
+      token
     })
   }
 }

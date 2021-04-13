@@ -2,7 +2,7 @@ import { Account } from '@/domain/entities/account'
 import { Either } from '@/shared/either'
 
 export interface Authentication {
-  execute(params: Authentication.Params): Promise<Authentication.Result>
+  execute: (params: Authentication.Params) => Promise<Authentication.Result>
 }
 
 export namespace Authentication {

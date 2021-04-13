@@ -1,3 +1,3 @@
-interface UsecaseError {
+export interface UsecaseError {
   message: string
 }
