@@ -2,7 +2,7 @@ import {
   LoadUserByEmailRepository,
   HashComparer,
   Encrypter,
-  LoadAdvisorByUserIdRepository
+  LoadAdvisorByPersonIdRepository
 } from '@/data/contracts'
 import { UserNotFoundError } from '@/data/usecases/errors'
 import { AccessPermissionError, InvalidPasswordError } from '@/domain/errors'
@@ -11,7 +11,7 @@ import { left, right } from '@/shared/either'
 
 export class DbAdvisorAuthentication implements Authentication {
   constructor (
-    private readonly loadAdvisorByUserId: LoadAdvisorByUserIdRepository,
+    private readonly loadAdvisorByUserId: LoadAdvisorByPersonIdRepository,
     private readonly loadUserByEmail: LoadUserByEmailRepository,
     private readonly hashComparer: HashComparer,
     private readonly encrypter: Encrypter
