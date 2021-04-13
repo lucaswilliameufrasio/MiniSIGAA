@@ -12,7 +12,8 @@
     "test:staged": "npm run test -- --findRelatedTests",
     "test:ci": "npm run test -- --coverage"
   },
-  "dependencies": {},
+    "knex": "^0.95.4",
+    "pg": "^8.5.1"
   "devDependencies": {
     "@types/jest": "^26.0.21",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
