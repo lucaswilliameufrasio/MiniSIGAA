@@ -10,6 +10,8 @@ type QueryResult = {
 
 export class LoadPersonByEmailKnexRepository implements LoadPersonByEmailRepository {
   async call (email: string): Promise<LoadPersonByEmailRepository.Result> {
-    return KnexHelper.connection.raw<QueryResult>('SELECT id, name, email, password FROM person WHERE email = ?', [email])
+    const result = await KnexHelper.execute<QueryResult[]>('SELECT id, name, email, password FROM person WHERE email = ?', [email])
+    const person = result.rows[0]
+    return person
   }
 }
