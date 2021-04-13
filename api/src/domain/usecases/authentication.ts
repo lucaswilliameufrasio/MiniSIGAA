@@ -1,3 +1,4 @@
+import { UserNotFoundError } from '@/domain/errors'
 import { Account } from '@/domain/entities/account'
 import { Either } from '@/shared/either'
 
@@ -11,5 +12,5 @@ export namespace Authentication {
     password: string
   }
 
-  export type Result = Either<Error, Account>
+  export type Result = Either<UserNotFoundError, Account>
 }

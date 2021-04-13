@@ -4,8 +4,7 @@ import {
   Encrypter,
   LoadAdvisorByPersonIdRepository
 } from '@/data/contracts'
-import { UserNotFoundError } from '@/data/usecases/errors'
-import { AccessPermissionError, InvalidPasswordError } from '@/domain/errors'
+import { AccessPermissionError, InvalidPasswordError, UserNotFoundError } from '@/domain/errors'
 import { Authentication } from '@/domain/usecases'
 import { left, right } from '@/shared/either'
 
