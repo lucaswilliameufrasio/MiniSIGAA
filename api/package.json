@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint '{src,tests}/**' --fix",
-    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --verbose",
+    "test": "jest --passWithNoTests --noStackTrace --runInBand --verbose",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm run test -- --watch -c jest-unit-config.js",
     "test:integration": "npm run test -- --watch -c jest-integration-config.js",
