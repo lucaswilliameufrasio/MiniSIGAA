@@ -10,6 +10,7 @@ export namespace Authentication {
   export type Params = {
     email: string
     password: string
+    role: string
   }
 
   export type Result = Either<UserNotFoundError, Account>

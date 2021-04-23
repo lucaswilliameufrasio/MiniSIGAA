@@ -8,7 +8,7 @@ type KnexConnectionOptions = {
 type KnexHelperProps = {
   connection: Knex<any, unknown[]>
   connectionOptions: any
-  connect: (connectionOptions: KnexConnectionOptions) => void
+  connect: (connectionOptions: KnexConnectionOptions) => Promise<void>
   disconnect: () => Promise<void>
   execute: <R = any[]>(query: string, values?: any) => Promise<{rows: R}>
 }
@@ -17,7 +17,7 @@ export const KnexHelper: KnexHelperProps = {
   connection: null as Knex<any, unknown[]>,
   connectionOptions: null as any,
 
-  connect (connectionOptions: KnexConnectionOptions) {
+  async connect (connectionOptions: KnexConnectionOptions) {
     this.connectionOptions = connectionOptions
     this.connection = knex({
       client: connectionOptions.client,
