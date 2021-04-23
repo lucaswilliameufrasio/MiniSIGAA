@@ -1,0 +1,13 @@
+{
+  "name": "MiniSIGAA",
+  "displayName": "Mini SIGAA",
+  "expo": {
+    "name": "MiniSIGAA",
+    "slug": "MiniSIGAA",
+    "version": "1.0.0",
+    "privacy": "unlisted",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
