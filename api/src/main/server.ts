@@ -1,7 +1,7 @@
 import 'module-alias/register'
 
-import { getEnv } from './config/env'
-import { knexConnectionConfig } from './config/database'
+import { getEnv } from '@/main/config/env'
+import { knexConnectionConfig } from '@/main/config/database'
 import { KnexHelper } from '@/infra/database/knex-helper'
 
 KnexHelper.connect(knexConnectionConfig).then(async () => {

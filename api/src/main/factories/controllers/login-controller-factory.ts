@@ -1,6 +1,6 @@
-import { Controller } from '@/presentation/contracts'
+import { makeDbAuthentication } from '@/main/factories/usecases'
 import { LoginController } from '@/presentation/controllers'
-import { makeDbAuthentication } from '../usecases/db-authentication-factory'
+import { Controller } from '@/presentation/contracts'
 
 export const makeLoginController = (): Controller => {
   const controller = new LoginController(makeDbAuthentication())
