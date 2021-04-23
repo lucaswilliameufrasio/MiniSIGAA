@@ -2,21 +2,29 @@ import {
   LoadPersonByEmailRepository,
   HashComparer,
   Encrypter,
-  LoadAdvisorByPersonIdRepository
+  LoadAdvisorByPersonIdRepository,
+  LoadTeacherByPersonIdRepository,
+  LoadStudentByPersonIdRepository
 } from '@/data/contracts'
-import { AccessPermissionError, InvalidPasswordError, UserNotFoundError } from '@/domain/errors'
+import {
+  AccessPermissionError,
+  InvalidPasswordError,
+  UserNotFoundError
+} from '@/domain/errors'
 import { Authentication } from '@/domain/usecases'
 import { left, right } from '@/shared/either'
 
 enum Role {
   student = 'student',
   advisor = 'advisor',
-  teacher = 'teacher'
+  teacher = 'teacher',
 }
 
 export class DbAuthentication implements Authentication {
   constructor (
     private readonly loadAdvisorByPersonId: LoadAdvisorByPersonIdRepository,
+    private readonly loadStudentByPersonId: LoadStudentByPersonIdRepository,
+    private readonly loadTeacherByPersonId: LoadTeacherByPersonIdRepository,
     private readonly loadPersonByEmail: LoadPersonByEmailRepository,
     private readonly hashComparer: HashComparer,
     private readonly encrypter: Encrypter
@@ -29,12 +37,18 @@ export class DbAuthentication implements Authentication {
       return left(new UserNotFoundError())
     }
 
-    let existInRoleRequested: any
+    let existInRoleRequested: object | undefined
 
-    if (params.role === Role.advisor) {
-      existInRoleRequested = await this.loadAdvisorByPersonId.call(personFound.id)
+    if (params.role === Role[params.role]) {
+      const roles = {
+        advisor: await this.loadAdvisorByPersonId.call(personFound.id),
+        student: await this.loadStudentByPersonId.call(personFound.id),
+        teacher: await this.loadTeacherByPersonId.call(personFound.id)
+      }
 
-      if (!existInRoleRequested) {
+      existInRoleRequested = roles[params.role]
+
+      if (!existInRoleRequested || existInRoleRequested === undefined) {
         return left(new AccessPermissionError())
       }
     } else {
