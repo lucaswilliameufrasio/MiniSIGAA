@@ -35,7 +35,7 @@ export class OffersNotChosenController implements Controller {
         return badRequest(offersNotChosenResult.value)
       }
 
-      return ok(offersNotChosenResult)
+      return ok(offersNotChosenResult.value)
     } catch (error) {
       return serverError(error)
     }
