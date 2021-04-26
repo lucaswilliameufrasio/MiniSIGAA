@@ -1,7 +1,7 @@
-import { DbLoadAvailableOffers } from '@/data/usecases/db-load-available-offers'
-import { LoadAvailableOffers } from '@/domain/usecases'
 import { LoadOffersNotChosenByStudentIdKnexRepository } from '@/infra/repositories/load-offers-not-chosen-by-student-id-knex-repository'
-import { LoadStudentByIdKnexRepository } from '@/infra/repositories/load-student-by-id-knex-repository'
+import { LoadStudentByIdKnexRepository } from '@/infra/repositories'
+import { DbLoadAvailableOffers } from '@/data/usecases'
+import { LoadAvailableOffers } from '@/domain/usecases'
 
 export const makeDbLoadAvailableOffers = (): LoadAvailableOffers => {
   const loadStudentByIdRepository = new LoadStudentByIdKnexRepository()
