@@ -42,12 +42,11 @@ export class DbLoadPersonByToken implements LoadPersonByToken {
           teacher: await this.loadTeacherByPersonId.call(Number(person.id))
         }
 
-        for (let index = 0; index < roles.length; index++) {
-          const role = roles[index]
+        roles.forEach((role, roleIndex) => {
           if (role === Role[role]) {
-            existInRoleRequested[index] = roleData[role]
+            existInRoleRequested[roleIndex] = roleData[role]
           }
-        }
+        })
 
         const notEvenHasOneRolePermission = existInRoleRequested.filter(role => role !== undefined)
 
