@@ -17,6 +17,7 @@
     "test:ci": "npm run test -- --coverage"
   },
   "dependencies": {
+    "argon2": "^0.27.2",
     "bcrypt": "^5.0.1",
     "dotenv": "^8.2.0",
     "fastify": "^3.15.0",
