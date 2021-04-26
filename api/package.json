@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node dist/main/server.js",
+    "dev": "concurrently 'npm run build:watch' 'npm run debug'",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "build:watch": "rimraf dist && tsc -p tsconfig-build.json -w",
     "lint": "eslint '{src,tests}/**' --fix",
@@ -29,6 +30,7 @@
     "@types/jest": "^26.0.21",
     "@types/jsonwebtoken": "^8.5.1",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "concurrently": "^6.0.2",
     "eslint": "^7.22.0",
     "eslint-config-standard-with-typescript": "^20.0.0",
     "eslint-plugin-import": "^2.22.1",
