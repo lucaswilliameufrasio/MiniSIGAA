@@ -17,7 +17,10 @@ export class LoginController implements Controller {
     }
 
     try {
-      const authenticationResult = await this.authentication.execute(request)
+      const authenticationResult: Either<
+      InvalidPasswordError | UserNotFoundError,
+      Account
+      > = await this.authentication.execute(request)
 
       if (authenticationResult.isLeft()) {
         if (authenticationResult instanceof UserNotFoundError) {
