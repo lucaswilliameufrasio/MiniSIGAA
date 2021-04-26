@@ -48,9 +48,9 @@ export class DbLoadPersonByToken implements LoadPersonByToken {
           }
         })
 
-        const notEvenHasOneRolePermission = existInRoleRequested.filter(role => role !== undefined)
+        const hasOneRolePermission = existInRoleRequested.filter(role => role !== undefined)
 
-        if (!notEvenHasOneRolePermission.length) {
+        if (!hasOneRolePermission.length) {
           return left(new AccessPermissionError())
         }
 
