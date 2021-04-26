@@ -1,8 +1,16 @@
-import { badRequest, ok, serverError, unauthorizedError } from '@/presentation/helpers'
+import {
+  badRequest,
+  forbidden,
+  ok,
+  serverError,
+  unauthorizedError
+} from '@/presentation/helpers'
 import { Controller, HttpResponse } from '@/presentation/contracts'
 import { MissingParamError } from '@/presentation/errors'
 import { InvalidPasswordError, UserNotFoundError } from '@/domain/errors'
 import { Authentication } from '@/domain/usecases'
+import { Either } from '@/shared/either'
+import { Account } from '@/domain/entities/account'
 
 export class LoginController implements Controller {
   constructor (private readonly authentication: Authentication) {}
