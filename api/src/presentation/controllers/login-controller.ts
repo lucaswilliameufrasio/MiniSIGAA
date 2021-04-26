@@ -23,15 +23,14 @@ export class LoginController implements Controller {
       > = await this.authentication.execute(request)
 
       if (authenticationResult.isLeft()) {
-        if (authenticationResult instanceof UserNotFoundError) {
-          return badRequest(new UserNotFoundError())
+        if (
+          authenticationResult.value instanceof InvalidPasswordError ||
+          authenticationResult.value instanceof UserNotFoundError
+        ) {
+          return unauthorizedError()
         }
 
-        if (authenticationResult instanceof InvalidPasswordError) {
-          return badRequest(new InvalidPasswordError())
-        }
-
-        return unauthorizedError()
+        return forbidden(authenticationResult.value)
       }
 
       return ok(authenticationResult)
