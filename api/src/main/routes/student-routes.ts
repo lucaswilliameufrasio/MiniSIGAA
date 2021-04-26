@@ -1,7 +1,7 @@
-import { adaptMiddleware, adaptRoute } from '@/main/adapters'
 import { makeOffersNotChosenController } from '@/main/factories/controllers'
+import { makeAuthMiddleware } from '@/main/factories/middlewares'
+import { adaptMiddleware, adaptRoute } from '@/main/adapters'
 import { FastifyInstance, FastifyPluginOptions } from 'fastify'
-import { makeAuthMiddleware } from '../factories/middlewares'
 
 export default (fastify: FastifyInstance, options: FastifyPluginOptions, done: (err?: Error) => void): void => {
   fastify.route({

@@ -1,5 +1,5 @@
+import { KnexHelper } from '@/infra/database/knex-helper'
 import { LoadPersonByEmailRepository } from '@/data/contracts'
-import { KnexHelper } from '../database/knex-helper'
 
 type QueryResult = {
   id: number

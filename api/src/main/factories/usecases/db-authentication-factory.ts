@@ -6,7 +6,7 @@ import {
   LoadStudentByPersonIdKnexRepository
 } from '@/infra/repositories'
 import { JwtAdapter, Argon2Adapter } from '@/infra/cryptography'
-import { DbAuthentication } from '@/data/usecases/db-authentication'
+import { DbAuthentication } from '@/data/usecases'
 import { Authentication } from '@/domain/usecases'
 
 export const makeDbAuthentication = (): Authentication => {

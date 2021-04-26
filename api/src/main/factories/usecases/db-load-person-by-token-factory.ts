@@ -1,5 +1,4 @@
-import { DbLoadPersonByToken } from '@/data/usecases/db-load-person-by-token'
-import { LoadPersonByToken } from '@/domain/usecases'
+import { getEnv } from '@/main/config/env'
 import { JwtAdapter } from '@/infra/cryptography'
 import {
   LoadAdvisorByPersonIdKnexRepository,
@@ -7,7 +6,8 @@ import {
   LoadStudentByPersonIdKnexRepository,
   LoadTeacherByPersonIdKnexRepository
 } from '@/infra/repositories'
-import { getEnv } from '@/main/config/env'
+import { DbLoadPersonByToken } from '@/data/usecases'
+import { LoadPersonByToken } from '@/domain/usecases'
 
 export const makeDbLoadPersonByToken = (): LoadPersonByToken => {
   const loadPersonByIdRepository = new LoadPersonByIdKnexRepository()
