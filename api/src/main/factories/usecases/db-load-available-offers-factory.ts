@@ -1,5 +1,4 @@
-import { LoadOffersNotChosenByStudentIdKnexRepository } from '@/infra/repositories/load-offers-not-chosen-by-student-id-knex-repository'
-import { LoadStudentByIdKnexRepository } from '@/infra/repositories'
+import { LoadStudentByIdKnexRepository, LoadOffersNotChosenByStudentIdKnexRepository } from '@/infra/repositories'
 import { DbLoadAvailableOffers } from '@/data/usecases'
 import { LoadAvailableOffers } from '@/domain/usecases'
 
