@@ -2,8 +2,8 @@ import { KnexHelper as sut } from '@/infra/database/knex-helper'
 import { knexConnectionConfig } from '@/main/config/database'
 
 describe('Knex Helper', () => {
-  beforeAll(() => {
-    sut.connect(knexConnectionConfig)
+  beforeAll(async () => {
+    await sut.connect(knexConnectionConfig)
   })
 
   afterAll(async () => {
@@ -18,5 +18,20 @@ describe('Knex Helper', () => {
     const result2 = await sut.execute('SELECT id FROM person')
 
     expect(result2).not.toBe(null)
+  })
+
+  it('Should throw an error if the connection could be stablished', async () => {
+    const promise = sut.connect({
+      client: 'pg',
+      connectionConfig: {
+        host: 'localhost',
+        port: 5431,
+        user: 'notevenexist',
+        password: 'what',
+        database: 'doesnotexist'
+      }
+    })
+
+    await expect(promise).rejects.toThrow()
   })
 })
