@@ -18,13 +18,19 @@ export const KnexHelper: KnexHelperProps = {
   connectionOptions: null as any,
 
   async connect (connectionOptions: KnexConnectionOptions) {
-    this.connectionOptions = connectionOptions
-    this.connection = knex({
-      client: connectionOptions.client,
-      connection: {
-        ...connectionOptions.connectionConfig
-      }
-    })
+    try {
+      this.connectionOptions = connectionOptions
+      this.connection = knex({
+        client: connectionOptions.client,
+        connection: {
+          ...connectionOptions.connectionConfig
+        }
+      })
+
+      await this.execute('select 1')
+    } catch (error) {
+      throw new Error('Could not stablish a connection')
+    }
   },
 
   async disconnect (): Promise<void> {
