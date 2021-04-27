@@ -9,11 +9,11 @@ import { LoadAvailableOffers } from '@/domain/usecases'
 import { StudentNotFoundError } from '@/domain/errors'
 import { Either } from '@/shared/either'
 
-export class OffersNotChosenController implements Controller {
+export class LoadOffersNotChosenController implements Controller {
   constructor (private readonly loadAvailableOffers: LoadAvailableOffers) {}
 
   async handle (
-    request: OffersNotChosenController.Request
+    request: LoadOffersNotChosenController.Request
   ): Promise<HttpResponse> {
     const requiredFields = ['student_id']
 
@@ -42,7 +42,7 @@ export class OffersNotChosenController implements Controller {
   }
 }
 
-export namespace OffersNotChosenController {
+export namespace LoadOffersNotChosenController {
   export type Request = {
     student_id: number
   }

@@ -1,4 +1,4 @@
-import { makeOffersNotChosenController } from '@/main/factories/controllers'
+import { makeLoadOffersNotChosenController } from '@/main/factories/controllers'
 import { makeAuthMiddleware } from '@/main/factories/middlewares'
 import { adaptMiddleware, adaptRoute } from '@/main/adapters'
 import { FastifyInstance, FastifyPluginOptions } from 'fastify'
@@ -8,7 +8,7 @@ export default (fastify: FastifyInstance, options: FastifyPluginOptions, done: (
     method: 'GET',
     url: '/students/:student_id/offers',
     preHandler: adaptMiddleware(makeAuthMiddleware(['advisor', 'student'])),
-    handler: adaptRoute(makeOffersNotChosenController())
+    handler: adaptRoute(makeLoadOffersNotChosenController())
   })
   done()
 }
