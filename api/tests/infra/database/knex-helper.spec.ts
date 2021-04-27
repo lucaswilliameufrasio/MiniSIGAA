@@ -20,7 +20,7 @@ describe('Knex Helper', () => {
     expect(result2).not.toBe(null)
   })
 
-  it('Should throw an error if the connection could be stablished', async () => {
+  it('Should throw an error if the connection could be established', async () => {
     const promise = sut.connect({
       client: 'pg',
       connectionConfig: {
