@@ -1,5 +1,16 @@
 import knex, { Knex } from 'knex'
 
+export type KnexConfig = {
+  client: string
+  connectionConfig: {
+    host: string
+    user: string
+    port: number
+    password: string
+    database: string
+  }
+}
+
 type KnexConnectionOptions = {
   client: string
   connectionConfig: Knex.Config | Knex.StaticConnectionConfig | Knex.ConnectionConfigProvider
@@ -29,7 +40,8 @@ export const KnexHelper: KnexHelperProps = {
 
       await this.execute('select 1')
     } catch (error) {
-      throw new Error('Could not stablish a connection')
+      const { connectionConfig } = connectionOptions as KnexConfig
+      throw new Error(`Could not stablish a connection to ${connectionConfig.host}:${connectionConfig.port}`)
     }
   },
 

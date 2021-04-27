@@ -1,15 +1,5 @@
+import { KnexConfig } from '@/infra/database/knex-helper'
 import { getEnv } from './env'
-
-type KnexConfig = {
-  client: string
-  connectionConfig: {
-    host: string
-    user: string
-    port: number
-    password: string
-    database: string
-  }
-}
 
 export const knexConnectionConfig: KnexConfig = {
   client: getEnv('dbClient'),
