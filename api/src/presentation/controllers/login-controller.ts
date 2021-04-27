@@ -41,7 +41,7 @@ export class LoginController implements Controller {
         return forbidden(authenticationResult.value)
       }
 
-      return ok(authenticationResult)
+      return ok(authenticationResult.value)
     } catch (error) {
       return serverError(error)
     }
