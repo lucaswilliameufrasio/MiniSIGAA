@@ -2,43 +2,24 @@ import React, { useState } from 'react'
 import { TextInput } from 'react-native-gesture-handler'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-import { GuestHeader, ScreenWrapper, CheckBox } from '@/presentation/components'
+import { GuestHeader, ScreenWrapper } from '@/presentation/components'
 import { StackActions, useNavigation } from '@react-navigation/core'
+import { Radio } from '../../components'
 
 const Login = (): JSX.Element => {
   const navigation = useNavigation()
-  const [toggleCheckBoxAdvisor, setToggleCheckBoxAdvisor] = useState(false)
-  const [toggleCheckBoxTeacher, setToggleCheckBoxTeacher] = useState(false)
-  const [toggleCheckBoxStudent, setToggleCheckBoxStudent] = useState(false)
-
-  const handleStudentCheckBox = (value: boolean): void => {
-    setToggleCheckBoxStudent(value)
-    setToggleCheckBoxTeacher(false)
-    setToggleCheckBoxAdvisor(false)
-  }
-
-  const handleTeacherCheckBox = (value: boolean): void => {
-    setToggleCheckBoxTeacher(value)
-    setToggleCheckBoxStudent(false)
-    setToggleCheckBoxAdvisor(false)
-  }
-
-  const handleAdvisorCheckBox = (value: boolean): void => {
-    setToggleCheckBoxAdvisor(value)
-    setToggleCheckBoxStudent(false)
-    setToggleCheckBoxTeacher(false)
-  }
+  const [selectedOption, setSelectedOption] = useState<string>('')
 
   const handleSignIn = (): void => {
-    if (toggleCheckBoxAdvisor) {
+    if (selectedOption === 'Técnico') {
       navigation.dispatch({
         ...StackActions.replace('AdvisorHome')
       })
-    } else if (toggleCheckBoxTeacher) {
+    } else if (selectedOption === 'Professor') {
       navigation.dispatch({
         ...StackActions.replace('TeacherHome')
       })
-    } else if (toggleCheckBoxStudent) {
+    } else if (selectedOption === 'Aluno') {
       navigation.dispatch({
         ...StackActions.replace('StudentHome')
       })
@@ -56,22 +37,11 @@ const Login = (): JSX.Element => {
             justifyContent: 'center'
           }}
         >
-          <CheckBox
-            label='Aluno'
-            value={toggleCheckBoxStudent}
-            onValueChange={(value) => handleStudentCheckBox(value)}
-          />
-
-          <CheckBox
-            label='Professor'
-            value={toggleCheckBoxTeacher}
-            onValueChange={(value) => handleTeacherCheckBox(value)}
-          />
-
-          <CheckBox
-            label='Técnico'
-            value={toggleCheckBoxAdvisor}
-            onValueChange={(value) => handleAdvisorCheckBox(value)}
+          <Radio
+          options={['Aluno', 'Professor', 'Técnico']}
+          horizontal={true}
+          selectedOption={selectedOption}
+          onChangeSelect={(option) => setSelectedOption(option)}
           />
         </View>
 
