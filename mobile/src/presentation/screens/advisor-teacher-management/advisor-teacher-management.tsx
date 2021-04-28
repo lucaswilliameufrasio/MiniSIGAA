@@ -9,6 +9,7 @@ import {
 
 import { Header, ScreenWrapper } from '@/presentation/components'
 import { api } from '@/services/api'
+import { useNavigation } from '@react-navigation/core'
 
 type Teacher = {
   name: string
@@ -18,24 +19,29 @@ type Teacher = {
 
 const AdvisorTeacherManagement = (): JSX.Element => {
   const [teachers, setTeachers] = useState<Teacher[]>()
+  const [loading, setLoading] = useState<boolean>(true)
+  const navigator = useNavigation()
 
   const loadTeachers = useCallback(async (): Promise<void> => {
     const response = await api.get('teachers')
     setTeachers(response.data)
+    setLoading(false)
   }, [])
-
-  console.log(teachers)
 
   useEffect(() => {
     loadTeachers()
   }, [])
+
+  const handleNavigationToAddTeacher = (): void => {
+    navigator.navigate('AddTeacher')
+  }
 
   const renderListItem = ({ item, index }: { item: Teacher, index: number}): ReactElement => (
     <View key={index.toString()} style={styles.listItemContainer}>
       {index === 0
         ? (
         <View style={styles.addTeacherButtonContainer}>
-          <TouchableOpacity style={styles.addTeacherButton} onPress={() => {}}>
+          <TouchableOpacity style={styles.addTeacherButton} onPress={handleNavigationToAddTeacher}>
             <Text style={styles.addTeacherButtonText}>Adicionar Professor</Text>
           </TouchableOpacity>
         </View>
@@ -55,6 +61,8 @@ const AdvisorTeacherManagement = (): JSX.Element => {
       <View style={styles.advisorContainer}>
         <FlatList
           data={teachers}
+          refreshing={loading}
+          onRefresh={loadTeachers}
           contentContainerStyle={{ paddingBottom: 60 }}
           keyExtractor={(item: any) => item.name}
           renderItem={renderListItem}

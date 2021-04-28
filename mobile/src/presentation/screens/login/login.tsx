@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { TextInput } from 'react-native-gesture-handler'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native'
 
 import { GuestHeader, ScreenWrapper, Radio } from '@/presentation/components'
 import { StackActions, useNavigation } from '@react-navigation/core'

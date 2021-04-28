@@ -7,3 +7,4 @@ export { default as AdvisorOfferManagement } from './advisor-offer-management/ad
 export { default as AdvisorDisciplineManagement } from './advisor-discipline-management/advisor-discipline-management'
 export { default as TeacherHome } from './teacher-home/teacher-home'
 export { default as StudentHome } from './student-home/student-home'
+export { default as AddTeacher } from './add-teacher/add-teacher'
