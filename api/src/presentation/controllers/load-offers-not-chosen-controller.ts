@@ -1,8 +1,4 @@
-import {
-  badRequest,
-  ok,
-  serverError
-} from '@/presentation/helpers'
+import { badRequest, ok, serverError } from '@/presentation/helpers'
 import { Controller, HttpResponse } from '@/presentation/contracts'
 import { MissingParamError } from '@/presentation/errors'
 import { LoadAvailableOffers } from '@/domain/usecases'
@@ -15,20 +11,22 @@ export class LoadOffersNotChosenController implements Controller {
   async handle (
     request: LoadOffersNotChosenController.Request
   ): Promise<HttpResponse> {
-    const requiredFields = ['student_id']
+    const requiredField = 'student_id'
 
-    for (const field of requiredFields) {
-      if (request[field] === undefined) {
-        return badRequest(new MissingParamError(field))
-      }
+    if (
+      request[requiredField] === undefined &&
+      (request.user_id === undefined || request.user_id === null)
+    ) {
+      return badRequest(new MissingParamError(requiredField))
     }
 
     try {
+      const id = request.student_id ?? request.user_id
       const offersNotChosenResult: Either<
       StudentNotFoundError,
       LoadAvailableOffers.Offers[]
       > = await this.loadAvailableOffers.execute({
-        studentId: request.student_id
+        studentId: id
       })
 
       if (offersNotChosenResult.isLeft()) {
@@ -45,5 +43,6 @@ export class LoadOffersNotChosenController implements Controller {
 export namespace LoadOffersNotChosenController {
   export type Request = {
     student_id: number
+    user_id: number
   }
 }
