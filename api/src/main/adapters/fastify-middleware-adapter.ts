@@ -15,7 +15,7 @@ export const adaptMiddleware = (middleware: Middleware) => {
 
     const httpResponse = await middleware.handle(request)
     if (httpResponse.statusCode === 200) {
-      Object.assign(req, httpResponse.body)
+      req.requestContext.set('user_id', httpResponse.body.person_id)
       next()
     } else {
       await res.status(httpResponse.statusCode).send({

@@ -4,9 +4,10 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 export const adaptRoute = (controller: Controller) => {
   return async (req: FastifyRequest, res: FastifyReply) => {
     const request = {
-      ...(req.body as object || {}),
-      ...(req.params as object || {}),
-      ...(req.query as object || {})
+      user_id: req.requestContext.get('user_id'),
+      ...((req.body as object) || {}),
+      ...((req.params as object) || {}),
+      ...((req.query as object) || {})
     }
 
     const httpResponse = await controller.handle(request)
