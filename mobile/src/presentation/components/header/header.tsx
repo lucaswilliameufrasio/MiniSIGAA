@@ -8,12 +8,15 @@ import {
   View,
   TouchableOpacity
 } from 'react-native'
+import { useAuth } from '@/presentation/contexts/auth'
 
 const Header: React.FC = () => {
   const navigation = useNavigation()
   const [showActions, setShowActions] = useState(false)
+  const { user, signOut } = useAuth()
 
   const handleLogout = (): void => {
+    signOut()
     handleHeaderActionsShow()
     navigation.dispatch({
       ...StackActions.replace('GuestHome')
@@ -52,7 +55,7 @@ const Header: React.FC = () => {
       <View style={styles.headerActionContainer}>
         <TouchableOpacity onPress={handleHeaderActionsShow}>
           <Text style={styles.headerActionText} numberOfLines={1}>
-            John Doe
+            {user?.name ?? 'John Doe'}
           </Text>
         </TouchableOpacity>
       </View>

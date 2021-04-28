@@ -9,6 +9,7 @@ import {
 import { Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto'
 import Router from '@/main/routes/router'
 import { SnackBarProvider } from '@/presentation/contexts/snack'
+import { AuthProvider } from '@/presentation/contexts/auth'
 
 const Main: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -23,14 +24,16 @@ const Main: React.FC = () => {
     return <ActivityIndicator />
   } else {
     return (
-      <SnackBarProvider>
-        <Router />
-        <StatusBar
-          backgroundColor='transparent'
-          translucent
-          barStyle='dark-content'
-        />
-      </SnackBarProvider>
+      <AuthProvider>
+        <SnackBarProvider>
+          <Router />
+          <StatusBar
+            backgroundColor='transparent'
+            translucent
+            barStyle='dark-content'
+          />
+        </SnackBarProvider>
+      </AuthProvider>
     )
   }
 }

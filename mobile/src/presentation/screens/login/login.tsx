@@ -5,27 +5,53 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { GuestHeader, ScreenWrapper, Radio } from '@/presentation/components'
 import { StackActions, useNavigation } from '@react-navigation/core'
 import { useSnackBars } from '@/presentation/contexts/snack'
+import { useAuth } from '@/presentation/contexts/auth'
 
 const Login = (): JSX.Element => {
   const navigation = useNavigation()
   const [selectedOption, setSelectedOption] = useState<string>('')
+  const [role, setRole] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
   const { addAlert } = useSnackBars()
+  const { signIn } = useAuth()
 
-  const handleSignIn = (): void => {
-    if (selectedOption === 'Técnico') {
+  const handleNavigationOnSignIn = (): void => {
+    if (role === 'advisor') {
       navigation.dispatch({
         ...StackActions.replace('AdvisorHome')
       })
-    } else if (selectedOption === 'Professor') {
+    } else if (role === 'teacher') {
       navigation.dispatch({
         ...StackActions.replace('TeacherHome')
       })
-    } else if (selectedOption === 'Aluno') {
+    } else if (role === 'student') {
       navigation.dispatch({
         ...StackActions.replace('StudentHome')
       })
     }
-    addAlert('É necessário selecionar um dos níveis de permissão!')
+  }
+
+  const handleSignIn = async (): Promise<void> => {
+    if (selectedOption === '') {
+      addAlert('É necessário selecionar um dos níveis de permissão!')
+      return
+    }
+    try {
+      await signIn({ email, password, role })
+      handleNavigationOnSignIn()
+    } catch (error: any) {
+      console.log(error)
+      const statusCode = error.response.status
+      if (statusCode === 401) {
+        addAlert('Verifique suas credenciais e tente novamente.')
+        return
+      } else if (statusCode === 403) {
+        addAlert('Você não possui esse nível de permissão.')
+        return
+      }
+      addAlert('Ocorreu um erro inesperado.')
+    }
   }
 
   return (
@@ -40,10 +66,26 @@ const Login = (): JSX.Element => {
           }}
         >
           <Radio
-          options={['Aluno', 'Professor', 'Técnico']}
-          horizontal={true}
-          selectedOption={selectedOption}
-          onChangeSelect={(option) => setSelectedOption(option)}
+            options={['Aluno', 'Professor', 'Técnico']}
+            horizontal={true}
+            selectedOption={selectedOption}
+            onChangeSelect={(option) => {
+              setSelectedOption(option)
+              switch (option) {
+                case 'Aluno':
+                  setRole('student')
+                  break
+                case 'Professor':
+                  setRole('teacher')
+                  break
+                case 'Técnico':
+                  setRole('advisor')
+                  break
+                default:
+                  setRole('')
+                  break
+              }
+            }}
           />
         </View>
 
@@ -51,14 +93,16 @@ const Login = (): JSX.Element => {
         <TextInput
           style={styles.input}
           keyboardType='email-address'
-          onChangeText={() => {}}
+          value={email}
+          onChangeText={setEmail}
         />
 
         <Text style={styles.label}>Senha</Text>
         <TextInput
           style={styles.input}
           secureTextEntry
-          onChangeText={() => {}}
+          value={password}
+          onChangeText={setPassword}
         />
 
         <View style={styles.loginButtonContainer}>
