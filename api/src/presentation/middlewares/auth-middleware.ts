@@ -17,7 +17,7 @@ export class AuthMiddleware implements Middleware {
         if (person.isLeft()) {
           return forbidden(person.value)
         }
-        return ok({ personId: person.value })
+        return ok({ person_id: person.value.id })
       }
 
       return forbidden(new AccessDeniedError())
