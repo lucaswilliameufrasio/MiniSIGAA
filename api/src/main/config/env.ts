@@ -12,7 +12,7 @@ const env = {
   dbPassword: process.env.DB_PASS || '',
   dbDatabase: process.env.DB_NAME || 'mini',
   dbUrl: process.env.DB_URL || '',
-  useDbUrl: process.env.USE_DB_URL || ''
+  useDbUrl: process.env.USE_DB_URL || 'false'
 }
 
 export const getEnv = (name: string): any => {
