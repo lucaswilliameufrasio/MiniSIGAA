@@ -2,6 +2,7 @@ import { makeAddTeacherController, makeLoadOffersNotChosenController, makeLoadTe
 import { makeAuthMiddleware } from '@/main/factories/middlewares'
 import { adaptMiddleware, adaptRoute } from '@/main/adapters'
 import { FastifyInstance, FastifyPluginOptions } from 'fastify'
+import { makeUpdatePersonController } from '../factories/controllers/update-person-controller-factory'
 
 export default (fastify: FastifyInstance, options: FastifyPluginOptions, done: (err?: Error) => void): void => {
   fastify.route({
@@ -23,6 +24,13 @@ export default (fastify: FastifyInstance, options: FastifyPluginOptions, done: (
     url: '/students/:student_id/offers',
     preHandler: adaptMiddleware(makeAuthMiddleware(['advisor'])),
     handler: adaptRoute(makeLoadOffersNotChosenController())
+  })
+
+  fastify.route({
+    method: 'PUT',
+    url: '/people/:person_id',
+    preHandler: adaptMiddleware(makeAuthMiddleware(['advisor'])),
+    handler: adaptRoute(makeUpdatePersonController())
   })
 
   done()
