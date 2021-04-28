@@ -6,8 +6,8 @@ import { FastifyInstance, FastifyPluginOptions } from 'fastify'
 export default (fastify: FastifyInstance, options: FastifyPluginOptions, done: (err?: Error) => void): void => {
   fastify.route({
     method: 'GET',
-    url: '/students/:student_id/offers',
-    preHandler: adaptMiddleware(makeAuthMiddleware(['advisor', 'student'])),
+    url: '/students/offers',
+    preHandler: adaptMiddleware(makeAuthMiddleware(['student'])),
     handler: adaptRoute(makeLoadOffersNotChosenController())
   })
   done()
