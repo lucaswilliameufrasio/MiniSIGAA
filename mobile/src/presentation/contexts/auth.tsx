@@ -40,7 +40,9 @@ export const AuthProvider: React.FC = ({ children }) => {
   useEffect(() => {
     async function loadStorageData (): Promise<void> {
       const storedUser: string | null = await AsyncStorage.getItem('Mini:user')
-      const storedToken: string | null = await AsyncStorage.getItem('Mini:token')
+      const storedToken: string | null = await AsyncStorage.getItem(
+        'Mini:token'
+      )
 
       if (storedUser !== null && storedToken !== null) {
         api.defaults.headers.Authorization = `Bearer ${storedToken}`
@@ -53,20 +55,34 @@ export const AuthProvider: React.FC = ({ children }) => {
     loadStorageData()
   }, [])
 
-  async function signIn ({ email, password, role }: SignInParams): Promise<void> {
+  async function signIn ({
+    email,
+    password,
+    role
+  }: SignInParams): Promise<void> {
     console.log({ email, password, role })
-    const response: SignInResult = await api.post('login', { email, password }, {
-      params: {
-        role
+    const response: SignInResult = await api.post(
+      'login',
+      { email, password },
+      {
+        params: {
+          role
+        }
       }
-    })
+    )
 
     setUser({ name: response.data.name, role: response.data.role })
 
     api.defaults.headers.Authorization = `Bearer ${response.data.token}`
 
-    await AsyncStorage.setItem('Mini:user', JSON.stringify({ name: response.data.name, role: response.data.role }))
-    await AsyncStorage.setItem('Mini:token', JSON.stringify(response.data.token))
+    await AsyncStorage.setItem(
+      'Mini:user',
+      JSON.stringify({ name: response.data.name, role: response.data.role })
+    )
+    await AsyncStorage.setItem(
+      'Mini:token',
+      JSON.stringify(response.data.token)
+    )
   }
 
   function signOut (): void {
@@ -78,7 +94,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ signed: !(user == null), loading, user, signIn, signOut }}>
+      value={{ signed: !(user == null), loading, user, signIn, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   )

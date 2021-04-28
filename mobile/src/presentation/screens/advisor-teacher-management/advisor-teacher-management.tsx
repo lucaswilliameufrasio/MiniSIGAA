@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useCallback, useEffect, useState } from 'react'
 import {
   FlatList,
   StyleSheet,
@@ -8,21 +8,29 @@ import {
 } from 'react-native'
 
 import { Header, ScreenWrapper } from '@/presentation/components'
+import { api } from '@/services/api'
 
-const LIST_MOCKED_DATA = Array.from(
-  Array(80).fill({
-    name: 'John Doe',
-    registry: '20219897898909',
-    email: 'johndoe@example.com'
-  }),
-  (item, value) => ({
-    ...item,
-    id: value
-  })
-)
+type Teacher = {
+  name: string
+  email: string
+  registration: string
+}
 
 const AdvisorTeacherManagement = (): JSX.Element => {
-  const renderListItem = ({ item, index }: { item: any, index: number}): ReactElement => (
+  const [teachers, setTeachers] = useState<Teacher[]>()
+
+  const loadTeachers = useCallback(async (): Promise<void> => {
+    const response = await api.get('teachers')
+    setTeachers(response.data)
+  }, [])
+
+  console.log(teachers)
+
+  useEffect(() => {
+    loadTeachers()
+  }, [])
+
+  const renderListItem = ({ item, index }: { item: Teacher, index: number}): ReactElement => (
     <View key={index.toString()} style={styles.listItemContainer}>
       {index === 0
         ? (
@@ -36,7 +44,7 @@ const AdvisorTeacherManagement = (): JSX.Element => {
       <TouchableOpacity style={styles.listItemButton}>
         <Text style={styles.boldText}>{item.name}</Text>
         <Text style={styles.regularText}>{item.email}</Text>
-        <Text style={styles.regularText}>Registro: {item.registry}</Text>
+        <Text style={styles.regularText}>Registro: {item.registration}</Text>
       </TouchableOpacity>
     </View>
   )
@@ -46,9 +54,9 @@ const AdvisorTeacherManagement = (): JSX.Element => {
       <Header />
       <View style={styles.advisorContainer}>
         <FlatList
-          data={LIST_MOCKED_DATA}
+          data={teachers}
           contentContainerStyle={{ paddingBottom: 60 }}
-          keyExtractor={(item: any) => item.id.toString()}
+          keyExtractor={(item: any) => item.name}
           renderItem={renderListItem}
           showsVerticalScrollIndicator={false}
           initialNumToRender={10}

@@ -1,14 +1,37 @@
-import React from 'react'
-import { useNavigation } from '@react-navigation/core'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import React, { useEffect } from 'react'
+import { StackActions, useNavigation } from '@react-navigation/core'
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native'
 
 import { GuestHeader, ScreenWrapper } from '@/presentation/components'
+import { useAuth } from '@/presentation/contexts/auth'
 
 const GuestHome = (): JSX.Element => {
   const navigator = useNavigation()
 
   const handleNavigateToLogin = (): void => {
     navigator.navigate('Login')
+  }
+
+  const { user, loading } = useAuth()
+
+  useEffect(() => {
+    if (user?.role === 'advisor') {
+      StackActions.replace('AdvisorHome')
+    }
+
+    if (user?.role === 'teacher') {
+      StackActions.replace('TeacherHome')
+    }
+
+    if (user?.role === 'student') {
+      StackActions.replace('StudentHome')
+    }
+  }, [])
+
+  if (loading) {
+    return (
+      <ActivityIndicator />
+    )
   }
 
   return (
