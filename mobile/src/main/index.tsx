@@ -8,6 +8,7 @@ import {
 } from '@expo-google-fonts/red-hat-display'
 import { Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto'
 import Router from '@/main/routes/router'
+import { SnackBarProvider } from '@/presentation/contexts/snack'
 
 const Main: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -22,14 +23,14 @@ const Main: React.FC = () => {
     return <ActivityIndicator />
   } else {
     return (
-      <>
+      <SnackBarProvider>
         <Router />
         <StatusBar
           backgroundColor='transparent'
           translucent
           barStyle='dark-content'
         />
-      </>
+      </SnackBarProvider>
     )
   }
 }

@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { TextInput } from 'react-native-gesture-handler'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-import { GuestHeader, ScreenWrapper } from '@/presentation/components'
+import { GuestHeader, ScreenWrapper, Radio } from '@/presentation/components'
 import { StackActions, useNavigation } from '@react-navigation/core'
-import { Radio } from '../../components'
+import { useSnackBars } from '@/presentation/contexts/snack'
 
 const Login = (): JSX.Element => {
   const navigation = useNavigation()
   const [selectedOption, setSelectedOption] = useState<string>('')
+  const { addAlert } = useSnackBars()
 
   const handleSignIn = (): void => {
     if (selectedOption === 'Técnico') {
@@ -24,6 +25,7 @@ const Login = (): JSX.Element => {
         ...StackActions.replace('StudentHome')
       })
     }
+    addAlert('É necessário selecionar um dos níveis de permissão!')
   }
 
   return (
