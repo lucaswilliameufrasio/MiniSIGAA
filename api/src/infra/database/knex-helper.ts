@@ -3,11 +3,12 @@ import knex, { Knex } from 'knex'
 export type KnexConfig = {
   client: string
   connectionConfig: {
-    host: string
-    user: string
-    port: number
-    password: string
-    database: string
+    connectionString?: string
+    host?: string
+    user?: string
+    port?: number
+    password?: string
+    database?: string
   }
 }
 

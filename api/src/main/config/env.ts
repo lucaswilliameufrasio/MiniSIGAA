@@ -10,7 +10,9 @@ const env = {
   dbPort: process.env.DB_PORT || 5432,
   dbUser: process.env.DB_USER || 'postgres',
   dbPassword: process.env.DB_PASS || '',
-  dbDatabase: process.env.DB_NAME || 'mini'
+  dbDatabase: process.env.DB_NAME || 'mini',
+  dbUrl: process.env.DB_URL || '',
+  useDbUrl: process.env.USE_DB_URL || ''
 }
 
 export const getEnv = (name: string): any => {
