@@ -11,7 +11,8 @@ export class DbLoadTeachers implements LoadTeachers {
       : teachers.map(teacher => ({
         name: teacher.name,
         email: teacher.email,
-        registration: String(teacher.registration)
+        registration: String(teacher.registration),
+        person_id: teacher.person_id
       }))
   }
 }

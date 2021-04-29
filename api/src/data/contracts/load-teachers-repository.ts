@@ -7,5 +7,6 @@ export namespace LoadTeachersRepository {
     name: string
     email: string
     registration: number
+    person_id: number
   }
 }
