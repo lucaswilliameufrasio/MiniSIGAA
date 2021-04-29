@@ -5,7 +5,9 @@ export const adaptMiddleware = (middleware: Middleware) => {
   return async (
     req: FastifyRequest,
     res: FastifyReply,
-    next: HookHandlerDoneFunction
+    // Do not use use the done function when working with async/await
+    // This may cause duplicated handler calls
+    _: HookHandlerDoneFunction
   ) => {
     const accessToken = req.headers?.authorization?.split(' ')[1] || ''
     const request = {
@@ -16,7 +18,6 @@ export const adaptMiddleware = (middleware: Middleware) => {
     const httpResponse = await middleware.handle(request)
     if (httpResponse.statusCode === 200) {
       req.requestContext.set('user_id', httpResponse.body.person_id)
-      next()
     } else {
       await res.status(httpResponse.statusCode).send({
         error: httpResponse.body.message
