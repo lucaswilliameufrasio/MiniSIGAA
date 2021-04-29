@@ -1,13 +1,9 @@
 import { UpdatePersonRepository } from '@/data/contracts'
 import { KnexHelper } from '../database/knex-helper'
 
-type QueryResult = {
-  id: number
-}
-
 export class UpdatePersonKnexRepository implements UpdatePersonRepository {
   async call (params: UpdatePersonRepository.Params): Promise<void> {
-    await KnexHelper.execute<QueryResult[]>(
+    await KnexHelper.execute(
       `
     UPDATE person
     SET name = ?,
@@ -19,7 +15,7 @@ export class UpdatePersonKnexRepository implements UpdatePersonRepository {
         address.street = ?,
         address.house_number = ?,
         age = ?
-    WHERE id = ?
+    WHERE id = ?;
     `,
       [
         params.name,

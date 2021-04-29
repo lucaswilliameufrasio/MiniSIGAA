@@ -5,6 +5,7 @@ type QueryResult = {
   name: string
   email: string
   registration: number
+  person_id: number
 }
 
 export class LoadTeachersKnexRepository
@@ -12,12 +13,13 @@ implements LoadTeachersRepository {
   async call (): Promise<LoadTeachersRepository.Result[]> {
     const result = await KnexHelper.execute<QueryResult[]>(
       ` SELECT
+            person.id as person_id,
             person.name,
             person.email,
             teacher.registration
         FROM
             teacher
-        JOIN person ON teacher.person_id = person.id
+        JOIN person ON teacher.person_id = person.id;
       `
     )
 
@@ -26,7 +28,8 @@ implements LoadTeachersRepository {
       : result.rows.map((item: QueryResult) => ({
         name: item.name,
         email: item.email,
-        registration: item.registration
+        registration: item.registration,
+        person_id: item.person_id
       }))
   }
 }

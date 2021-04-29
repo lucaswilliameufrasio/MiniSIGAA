@@ -39,7 +39,7 @@ export const KnexHelper: KnexHelperProps = {
         }
       })
 
-      await this.execute('select 1')
+      await this.execute('select 1;')
     } catch (error) {
       const { connectionConfig } = connectionOptions as KnexConfig
       throw new Error(`Could not stablish a connection to ${connectionConfig.host}:${connectionConfig.port}`)

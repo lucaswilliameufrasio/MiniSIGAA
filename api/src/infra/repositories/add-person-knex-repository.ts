@@ -11,32 +11,32 @@ export class AddPersonKnexRepository implements AddPersonRepository {
   ): Promise<AddPersonRepository.Result> {
     const result = await KnexHelper.execute<QueryResult[]>(
       `
-    INSERT INTO
-    person (
-        name,
-        email,
-        password,
-        cpf,
-        sex,
-        address,
-        age
-        )
-    VALUES
-        (
-        ?,
-        ?,
-        ?,
-        ?,
-        ?,
-        (
+      INSERT INTO
+      person (
+          name,
+          email,
+          password,
+          cpf,
+          sex,
+          address,
+          age
+          )
+      VALUES
+          (
+          ?,
+          ?,
+          ?,
+          ?,
+          ?,
+          (
             ?,
             ?,
             ?,
             ?
-        ),
-        ?
-    )
-    RETURNING id;
+          ),
+          ?
+      )
+      RETURNING id;
     `,
       [
         params.name,
@@ -51,8 +51,6 @@ export class AddPersonKnexRepository implements AddPersonRepository {
         params.age
       ]
     )
-
-    console.log(result.rows)
 
     return {
       id: result.rows[0].id
