@@ -8,6 +8,6 @@ export default async (app: FastifyInstance): Promise<void> => {
   await app.register(autoload, {
     dir: routesFolderPath,
     options: { prefix: '/api' },
-    ignorePattern: /.map/
+    ignorePattern: /\.map\./
   })
 }
