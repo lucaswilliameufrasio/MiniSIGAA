@@ -59,8 +59,7 @@ export class AddTeacherController implements Controller {
 
       return noContent()
     } catch (error) {
-      // I will replace that with serverError after the class ending
-      return badRequest(error)
+      return serverError(error)
     }
   }
 }
