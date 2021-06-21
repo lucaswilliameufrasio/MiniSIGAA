@@ -8,29 +8,29 @@ export class AddTeacherController implements Controller {
   constructor (private readonly addTeacher: AddTeacher) {}
 
   async handle (request: AddTeacherController.Request): Promise<HttpResponse> {
-    // This whole project is for a database class
-    // It`s required to let the database handle
-    // the constraints
+    const requiredFields = [
+      'name',
+      'registration',
+      'email',
+      'password',
+      'cpf',
+      'sex',
+      'age',
+      'city',
+      'state',
+      'street',
+      'house_number'
+    ]
 
-    // const requiredFields = [
-    //   'name',
-    //   'registration',
-    //   'email',
-    //   'password',
-    //   'cpf',
-    //   'sex',
-    //   'age',
-    //   'city',
-    //   'state',
-    //   'street',
-    //   'house_number'
-    // ]
-
-    // for (const field of requiredFields) {
-    //   if (request[field] === undefined || request[field] === '' || request[field] === null) {
-    //     return badRequest(new MissingParamError(field))
-    //   }
-    // }
+    for (const field of requiredFields) {
+      if (
+        request[field] === undefined ||
+        request[field] === '' ||
+        request[field] === null
+      ) {
+        return badRequest(new MissingParamError(field))
+      }
+    }
 
     try {
       const result: Either<
