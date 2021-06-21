@@ -34,24 +34,22 @@ export class AddTeacherController implements Controller {
     }
 
     try {
-      const result: Either<
-      EmailInUseError,
-      void
-      > = await this.addTeacher.execute({
-        name: request.name,
-        email: request.email,
-        age: request.age,
-        cpf: request.cpf,
-        password: request.password,
-        registration: request.registration,
-        sex: request.sex,
-        address: {
-          city: request.city,
-          country_state: request.state,
-          house_number: request.house_number,
-          street: request.street
-        }
-      })
+      const result: Either<EmailInUseError, void> =
+        await this.addTeacher.execute({
+          name: request.name,
+          email: request.email,
+          age: request.age,
+          cpf: request.cpf,
+          password: request.password,
+          registration: request.registration,
+          sex: request.sex,
+          address: {
+            city: request.city,
+            country_state: request.state,
+            house_number: request.house_number,
+            street: request.street
+          }
+        })
 
       if (result?.isLeft()) {
         return badRequest(result.value)
