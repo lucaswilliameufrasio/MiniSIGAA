@@ -19,7 +19,7 @@ export const getEnv = (name: string): any => {
   const value = env[name]
 
   if (value === '' || value === null) {
-    throw Error(`The variable ${name} was not found`)
+    throw Error(`The env variable ${name} was not defined`)
   }
 
   return value
