@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node dist/main/server.js",
-    "dev": "tsc-watch --onSuccess 'npm run debug'",
+    "dev": "rimraf dist && tsc-watch -p tsconfig-build.json --noClear --onSuccess 'npm run debug'",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "build:watch": "rimraf dist && tsc -p tsconfig-build.json -w",
     "debug": "npx nodemon -L --watch ./dist --inspect=0.0.0.0:9222 ./dist/main/server.js",
