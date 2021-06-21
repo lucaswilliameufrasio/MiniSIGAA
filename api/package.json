@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node dist/main/server.js",
-    "dev": "concurrently 'npm run build:watch' 'npm run debug'",
+    "dev": "tsc-watch --onSuccess 'npm run debug'",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "build:watch": "rimraf dist && tsc -p tsconfig-build.json -w",
     "debug": "npx nodemon -L --watch ./dist --inspect=0.0.0.0:9222 ./dist/main/server.js",
@@ -33,7 +33,6 @@
     "@types/jest": "^26.0.21",
     "@types/jsonwebtoken": "^8.5.1",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "concurrently": "^6.0.2",
     "eslint": "^7.22.0",
     "eslint-config-standard-with-typescript": "^20.0.0",
     "eslint-plugin-import": "^2.22.1",
@@ -43,6 +42,7 @@
     "nodemon": "^2.0.7",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.5.4",
+    "tsc-watch": "^4.4.0",
     "typescript": "^4.2.3"
   },
   "engines": {
