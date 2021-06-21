@@ -1,8 +1,9 @@
 import { Controller, HttpResponse } from '@/presentation/contracts'
-import { AddTeacher } from '@/domain/usecases'
-import { badRequest, noContent } from '../helpers'
-import { Either } from '@/shared/either'
+import { badRequest, noContent, serverError } from '@/presentation/helpers'
+import { MissingParamError } from '@/presentation/errors'
 import { EmailInUseError } from '@/domain/errors'
+import { AddTeacher } from '@/domain/usecases'
+import { Either } from '@/shared/either'
 
 export class AddTeacherController implements Controller {
   constructor (private readonly addTeacher: AddTeacher) {}
