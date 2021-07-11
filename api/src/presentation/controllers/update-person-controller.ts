@@ -48,7 +48,6 @@ export class UpdatePersonController implements Controller {
 
       return noContent()
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
